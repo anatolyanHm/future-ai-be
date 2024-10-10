@@ -15,10 +15,11 @@ import { AccessStrategy } from 'lib/auth/stategy/access.stategy';
 import { CustomAuthGuard } from 'lib/auth/guard/auth.guard';
 import { RoleGuard } from 'lib/auth/guard/role.guard';
 import { CombinedGuard } from 'lib/auth/guard/combined.guard';
+import { AppController } from 'app.controller';
 
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true })],
-  controllers: [AuthController, UserController, DealController],
+  controllers: [AuthController, UserController, DealController, AppController],
   providers: [
     UserFirebaseService,
     EmailService,
