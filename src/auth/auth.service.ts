@@ -34,34 +34,34 @@ export class AuthService {
     }
   }
 
-  async signInWithEmail(
-    email: string,
-    password: string,
-  ): Promise<{ uid: string; token: string }> {
-    try {
-      const auth = getAuth(); // Client-side authentication
+  // async signInWithEmail(
+  //   email: string,
+  //   password: string,
+  // ): Promise<{ uid: string; token: string }> {
+  //   try {
+  //     const auth = getAuth(); // Client-side authentication
 
-      const userCredential = await signInWithEmailAndPassword(
-        auth, // use client-side `auth`
-        email,
-        password,
-      );
+  //     const userCredential = await signInWithEmailAndPassword(
+  //       auth, // use client-side `auth`
+  //       email,
+  //       password,
+  //     );
 
-      const user = userCredential.user;
-      const tokenId = await user.getIdToken(); // Get user token from client-side
+  //     const user = userCredential.user;
+  //     const tokenId = await user.getIdToken(); // Get user token from client-side
 
-      if (!user) throw new UnauthorizedException('Invalid credentials');
+  //     if (!user) throw new UnauthorizedException('Invalid credentials');
 
-      // Optionally, you can generate a custom token for the user via the Admin SDK
-      const customToken = await this.firebaseApp.auth().createCustomToken(user.uid);
+  //     // Optionally, you can generate a custom token for the user via the Admin SDK
+  //     const customToken = await this.firebaseApp.auth().createCustomToken(user.uid);
 
-      return {
-        uid: user.uid,
-        token: customToken, // Return custom token
-      };
-    } catch (error) {
-      console.log(error.message);
-      throw new UnauthorizedException(error.message);
-    }
-  }
+  //     return {
+  //       uid: user.uid,
+  //       token: customToken, // Return custom token
+  //     };
+  //   } catch (error) {
+  //     console.log(error.message);
+  //     throw new UnauthorizedException(error.message);
+  //   }
+  // }
 }
